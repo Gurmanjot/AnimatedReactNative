@@ -2,14 +2,14 @@ import React from 'react'
 import {View, Text, Animated, TouchableWithoutFeedback, Platform, Dimensions, Image, TouchableOpacity, Easing} from 'react-native'
 import {get} from 'lodash'
 import { dots, food, travel, fun } from '../configs/images'
-
+ 
 const {height, width} = Dimensions.get('window')
 
  const isIphoneX = Platform.OS === 'ios' && !Platform.isPad && !Platform.isTVOS && (height === 812 || width === 812 || (height === 896 ||width === 896))
  const BOTTOM_SAFEAREA_HEIGHT = Platform.OS === 'ios' ? (isIphoneX ? 34 : 0) : 0
 
 export class Snackbar extends React.Component{
-
+ 
     animatedValue = new Animated.Value(0)
 
     runAnimation=()=>{
@@ -41,7 +41,7 @@ export class Snackbar extends React.Component{
     })
 
     return(
-      <Animated.View style={{height:animatedHeight,width:animatedWidth, backgroundColor:'#ffac8e', transform:[{translateY:animatedTranslate}], borderRadius:4, position:'absolute', top:0, zIndex:10, alignSelf:'center', justifyContent:'center', alignItems:'center'}} >
+      <Animated.View style={{height:animatedHeight,width:animatedWidth, backgroundColor:'#ffa259', transform:[{translateY:animatedTranslate}], borderRadius:4, position:'absolute', top:0, zIndex:10, alignSelf:'center', justifyContent:'center', alignItems:'center'}} >
         <Animated.View style={{opacity:animatedOpacity,padding:10}}>
          {this.props.children}
         </Animated.View>

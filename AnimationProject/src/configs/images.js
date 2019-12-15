@@ -7,4 +7,9 @@ import travel from '../assets/travel.jpeg'
 import fun from '../assets/fun.jpeg'
 import extra from '../assets/extra.jpeg'
 import dots from '../assets/dots.png'
-export {person, password, email, leftArrow, food, travel, fun, extra, dots}
+import fb from '../assets/facebook.png'
+import instagram from '../assets/instagram.png'
+import gmail from '../assets/gmail.svg'
+import whatsapp from '../assets/whatsapp.png'
+import snapchat from '../assets/snapchat.png'
+export {person, password, email, leftArrow, food, travel, fun, extra, dots, fb, instagram, gmail, whatsapp, snapchat}
