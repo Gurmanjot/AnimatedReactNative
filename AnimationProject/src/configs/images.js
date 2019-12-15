@@ -1,0 +1,10 @@
+import person from '../assets/user.png'
+import email from '../assets/email.png'
+import password from '../assets/lock.png'
+import leftArrow from '../assets/left-arrow.png'
+import food from '../assets/food.jpeg'
+import travel from '../assets/travel.jpeg'
+import fun from '../assets/fun.jpeg'
+import extra from '../assets/extra.jpeg'
+import dots from '../assets/dots.png'
+export {person, password, email, leftArrow, food, travel, fun, extra, dots}
