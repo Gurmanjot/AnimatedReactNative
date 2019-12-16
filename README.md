@@ -1,2 +1,1 @@
 # AnimatedReactNative
-![](AnimatedChallenge.gif)
