@@ -92,6 +92,10 @@ state={
     }).start()
   }
 
+  iconPress=(func)=>{
+      func()
+    this.onTouch()
+  }
 render(){
 const maxHeight = get(this.props,'length',140);
 const iconSize = maxHeight * 0.24;
@@ -151,6 +155,8 @@ const dotSize = iconSize *0.8;
      outputRange:[0,3,3]
   })
 
+
+
   return(
     <View style={{position:'absolute', bottom:BOTTOM_SAFEAREA_HEIGHT+15, right:15, zIndex:2}} >
    
@@ -166,7 +172,7 @@ const dotSize = iconSize *0.8;
            {
              get(this.props,'firstIcon',false) && get(this.props,'onFirstIconPress',false) &&  (
               <Animated.View  style={{position:'absolute',bottom:0, right:0, transform:[{translateX:firstIconPositionX},{translateY:firstIconPositionY}], opacity:iconOpacity}}> 
-              <TouchableOpacity onPress={this.props.onFirstIconPress}  disabled={this.state.touch} >
+              <TouchableOpacity onPress={()=>this.iconPress(this.props.onFirstIconPress)}  disabled={this.state.touch} >
                 <Image source={this.props.firstIcon}  style={{borderRadius:iconSize/2, height:iconSize, width:iconSize}}  />
               </TouchableOpacity>
             </Animated.View>  
@@ -175,7 +181,7 @@ const dotSize = iconSize *0.8;
           {
              get(this.props,'secondIcon',false) && get(this.props,'onSecondIconPress',false) &&  (
               <Animated.View style={{position:'absolute',bottom:0, right:0, transform:[{translateX:secondIconPositionX},{translateY:secondIconPositionY}], opacity:iconOpacity}}>
-              <TouchableOpacity onPress={this.props.onSecondIconPress} disabled={this.state.touch} >
+              <TouchableOpacity onPress={()=>this.iconPress(this.props.onSecondIconPress)} disabled={this.state.touch} >
                 <Image source={this.props.secondIcon}  style={{borderRadius:iconSize/2, height:iconSize, width:iconSize}}  />
                 </TouchableOpacity>
               </Animated.View>
@@ -184,7 +190,7 @@ const dotSize = iconSize *0.8;
           {
                get(this.props,'thirdIcon',false) && get(this.props,'onThirdIconPress',false) &&  (
                   <Animated.View  style={{position:'absolute',bottom:0, right:0, transform:[{translateY:thirdIconPositionY},{translateX:thirdIconPositionX}], opacity:iconOpacity}}>
-                    <TouchableOpacity onPress={this.props.onThirdIconPress} disabled={this.state.touch} >
+                    <TouchableOpacity onPress={()=>this.iconPress(this.props.onThirdIconPress)} disabled={this.state.touch} >
                     <Image source={this.props.thirdIcon}  style={{borderRadius:iconSize/2, height:iconSize, width:iconSize}}  />
                     </TouchableOpacity>
                 </Animated.View> 
