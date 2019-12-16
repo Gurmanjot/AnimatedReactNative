@@ -8,7 +8,15 @@ const {height, width} = Dimensions.get('window')
  const isIphoneX = Platform.OS === 'ios' && !Platform.isPad && !Platform.isTVOS && (height === 812 || width === 812 || (height === 896 ||width === 896))
  const BOTTOM_SAFEAREA_HEIGHT = Platform.OS === 'ios' ? (isIphoneX ? 34 : 0) : 0
 
-export class Snackbar extends React.Component{
+
+/**
+ * duration:    time for which u want the snackbar to show
+ * positionTop: margin from Top 
+ * height:      height of snackbar
+ * width:       width of snackbar
+ */
+
+ export class Snackbar extends React.Component{
  
     animatedValue = new Animated.Value(0)
 
@@ -50,7 +58,17 @@ export class Snackbar extends React.Component{
   }
 }
 
-
+/**
+ * length: height and width of component
+ * backgroundColor: bgColor of the component
+ * iconColor:    color of the dot icon
+ * firstIcon:    source of first Icon 
+ * secondIcon:    source of second Icon 
+ * thirdIcon:    source of third Icon 
+ * onFirstIconPress: action on first Icon press
+ * onSecondIconPress: action on second Icon press
+ * onThirdIconPress: action on Third Icon press
+ */
 export class BottomClick extends React.Component{
 
 state={
@@ -177,6 +195,10 @@ const dotSize = iconSize *0.7;
 }
 }
 
+/**
+ * onButtonPress: action after button si pressed
+ * title:   title of the button
+ */
 export class Button extends React.Component{
   
   animatedValue = new Animated.Value(0)
