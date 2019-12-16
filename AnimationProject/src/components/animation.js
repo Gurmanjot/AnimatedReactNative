@@ -14,6 +14,8 @@ const {height, width} = Dimensions.get('window')
  * positionTop: margin from Top 
  * height:      height of snackbar
  * width:       width of snackbar
+ * animEndCallback: called when animation ends
+ * backgroundColor: change bgColor
  */
 
  export class Snackbar extends React.Component{
@@ -24,7 +26,10 @@ const {height, width} = Dimensions.get('window')
       Animated.timing(this.animatedValue,{
         toValue:2,
         duration:get(this.props,'duration',9000)
-      }).start()
+      }).start((finished)=>{
+        if(this.props.animEndCallback && finished)
+          this.props.animEndCallback();
+      })
     }
     componentDidMount(){
       this.runAnimation()
@@ -49,7 +54,7 @@ const {height, width} = Dimensions.get('window')
     })
 
     return(
-      <Animated.View style={{height:animatedHeight,width:animatedWidth, backgroundColor:'#ffa259', transform:[{translateY:animatedTranslate}], borderRadius:4, position:'absolute', top:0, zIndex:10, alignSelf:'center', justifyContent:'center', alignItems:'center'}} >
+      <Animated.View style={{height:animatedHeight,width:animatedWidth, backgroundColor:get(this.props,'backgroundColor','#ffa259'), transform:[{translateY:animatedTranslate}], borderRadius:4, position:'absolute', top:0, zIndex:10, alignSelf:'center', justifyContent:'center', alignItems:'center'}} >
         <Animated.View style={{opacity:animatedOpacity,padding:10}}>
          {this.props.children}
         </Animated.View>
@@ -90,7 +95,7 @@ state={
 render(){
 const maxHeight = get(this.props,'length',140);
 const iconSize = maxHeight * 0.24;
-const dotSize = iconSize *0.7;
+const dotSize = iconSize *0.8;
   const animatedHeight = this.animatedValue.interpolate({
     inputRange:[0,1],
     outputRange:[iconSize,maxHeight],
@@ -148,13 +153,15 @@ const dotSize = iconSize *0.7;
 
   return(
     <View style={{position:'absolute', bottom:BOTTOM_SAFEAREA_HEIGHT+15, right:15, zIndex:2}} >
-    <TouchableWithoutFeedback onPress={()=>this.onTouch()}>
+   
         <View>
+        <TouchableWithoutFeedback onPress={this.onTouch}>
         <Animated.View style={{backgroundColor:animatedBackground, height:animatedHeight, width:animatedWidth, borderRadius:4,borderTopLeftRadius:animatedRadius,  }}>
-          <Animated.View style={{position:'absolute', bottom:0, right:0, transform:[{rotate:animatedRotate}],}}>
+          <Animated.View style={{position:'absolute', bottom:6, right:6, transform:[{rotate:animatedRotate}],}}>
             <Image source={dots}   style={{tintColor:get(this.props,'iconColor','white'), height:dotSize, width:dotSize}}/>
           </Animated.View>
         </Animated.View>
+        </TouchableWithoutFeedback>
         <Animated.View style={{position:'absolute', bottom:0, right:0, backgroundColor:'transparent', height:animatedHeight, width:animatedWidth, zIndex:iconShow,}}>
            {
              get(this.props,'firstIcon',false) && get(this.props,'onFirstIconPress',false) &&  (
@@ -183,12 +190,13 @@ const dotSize = iconSize *0.7;
                 </Animated.View> 
                )
           }
-            <Animated.View style={{position:'absolute', bottom:0, right:0, transform:[{rotate:animatedRotate}],}}>
+           <TouchableWithoutFeedback onPress={this.onTouch}>
+            <Animated.View style={{position:'absolute', bottom:6, right:6, transform:[{rotate:animatedRotate}],}}>
               <Image source={dots} style={{tintColor:get(this.props,'iconColor','white'), height:dotSize, width:dotSize}}/>
             </Animated.View>
+            </TouchableWithoutFeedback>
         </Animated.View>
         </View>
-    </TouchableWithoutFeedback>
     </View>
 
  )
